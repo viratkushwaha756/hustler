@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Management | HustlersConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== COLOR PALETTE ===== */
+        :root {
+            --bg-main: #F3EDE4;
+            --bg-soft: #E9E1D6;
+            --card-bg: #F7F3EC;
+            --primary-brown: #5B3A29;
+            --primary-dark: #3E281C;
+            --accent-teal: #2EC4C7;
+            --accent-blue: #0891b2;
+            --accent-purple: #8b5cf6;
+            --text-muted: #7B7B7B;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 70% 60%, #DCEBEA 0%, var(--bg-main) 60%);
+            color: var(--primary-brown);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(243, 237, 228, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(91, 58, 41, 0.1);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-brown);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--primary-brown);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .btn {
+            background: var(--primary-brown);
+            color: white;
+            padding: 12px 26px;
+            border-radius: 40px;
+            text-decoration: none;
+            box-shadow: var(--shadow-soft);
+            font-weight: 600;
+            display: inline-block;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-blue {
+            background: var(--accent-blue);
+        }
+
+        .btn-blue:hover {
+            background: #0c7a9c;
+        }
+
+        .btn-purple {
+            background: var(--accent-purple);
+        }
+
+        .btn-purple:hover {
+            background: #7c3aed;
+        }
+
+        /* HERO SECTION */
+        .service-hero {
+            text-align: center;
+            padding: 180px 20px 100px;
+            background: linear-gradient(135deg, rgba(243, 237, 228, 0.9) 0%, rgba(220, 235, 234, 0.7) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-hero h1 {
+            font-size: 72px;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            line-height: 1.1;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .service-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            color: var(--text-muted);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent-blue);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        /* SOCIAL MEDIA ICONS ANIMATION */
+        .social-icons-hero {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .social-icon-hero {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .social-icon-hero.instagram {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+
+        .social-icon-hero.facebook {
+            background: #1877F2;
+        }
+
+        .social-icon-hero.twitter {
+            background: #1DA1F2;
+        }
+
+        .social-icon-hero.linkedin {
+            background: #0077B5;
+        }
+
+        .social-icon-hero.youtube {
+            background: #FF0000;
+        }
+
+        .social-icon-hero.tiktok {
+            background: #000000;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* PLATFORM SHOWCASE */
+        .platforms-section {
+            background: var(--bg-soft);
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 70px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 50px;
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .platform-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .platform-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 32px;
+            transition: var(--transition);
+        }
+
+        .platform-card:hover .platform-icon {
+            transform: rotate(360deg);
+        }
+
+        .platform-card h3 {
+            font-size: 22px;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .platform-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* ANIMATED DASHBOARD */
+        .dashboard-section {
+            padding: 100px 0;
+        }
+
+        .dashboard-container {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .metric-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .metric-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        .metric-content h4 {
+            font-size: 18px;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin: 20px 0;
+        }
+
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            color: #10B981;
+            font-weight: 600;
+        }
+
+        .metric-trend.down {
+            color: #EF4444;
+        }
+
+        /* SERVICES SECTION */
+        .services {
+            background: var(--bg-soft);
+            padding: 100px 0;
+        }
+
+        .services-tabs {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-blue);
+            color: white;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: rgba(8, 145, 178, 0.1);
+            color: var(--accent-blue);
+        }
+
+        .tab-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: var(--shadow-soft);
+            min-height: 400px;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .tab-pane h3 {
+            font-size: 28px;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .service-features li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(91, 58, 41, 0.1);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+
+        .service-features li i {
+            color: var(--accent-blue);
+            margin-right: 15px;
+            font-size: 18px;
+        }
+
+        /* CONTENT CALENDAR */
+        .calendar-section {
+            padding: 100px 0;
+        }
+
+        .calendar-container {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+        }
+
+        .calendar-day {
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-dark);
+            padding: 15px 0;
+            background: rgba(8, 145, 178, 0.1);
+            border-radius: 10px;
+        }
+
+        .calendar-date {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 120px;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calendar-date:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .calendar-date.scheduled::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        .date-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .schedule-item {
+            background: rgba(8, 145, 178, 0.1);
+            border-radius: 6px;
+            padding: 5px 10px;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: var(--accent-blue);
+        }
+
+        /* RESULTS SHOWCASE */
+        .results-section {
+            background: var(--bg-soft);
+            padding: 100px 0;
+        }
+
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            align-items: center;
+        }
+
+        .results-content h3 {
+            font-size: 36px;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .results-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .result-stat {
+            text-align: center;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .result-stat h4 {
+            font-size: 42px;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+        }
+
+        .results-visual {
+            position: relative;
+            height: 400px;
+        }
+
+        .chart-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* PRICING SECTION */
+        .pricing {
+            padding: 100px 0;
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            width: 320px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--accent-blue);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--accent-blue);
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .pricing-header h3 {
+            font-size: 24px;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 30px;
+        }
+
+        .price span {
+            font-size: 16px;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(91, 58, 41, 0.1);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-teal) 100%);
+            border-radius: 30px;
+            padding: 60px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .cta-card h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .cta-card p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            padding: 100px 0;
+            background: var(--bg-soft);
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            justify-content: space-between;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .contact-details {
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--primary-brown);
+        }
+
+        .contact-item i {
+            width: 30px;
+            color: var(--accent-blue);
+            font-size: 18px;
+        }
+.contact-form {
+    flex: 1;
+    min-width: 300px;
+
+    /* Glass effect */
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    padding: 40px;
+    border-radius: 24px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+}
+
+.contact-form h3 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: var(--primary-dark);
+}
+
+/* FORM GROUP */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(90, 60, 40, 0.7);
+}
+
+/* INPUTS / TEXTAREA / SELECT — GLASS STYLE */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 16px;
+
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #3a2a1f;
+
+    transition: all 0.3s ease;
+}
+
+/* FOCUS STATE */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(8, 145, 178, 0.6);
+  
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+
+        /* FOOTER */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+            .service-hero h1 {
+                font-size: 56px;
+            }
+            
+            .platforms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .service-hero {
+                padding: 140px 20px 60px;
+            }
+            
+            .service-hero h1 {
+                font-size: 42px;
+            }
+            
+            .service-hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calendar-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .pricing-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .social-icons-hero {
+                gap: 20px;
+            }
+            
+            .social-icon-hero {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .calendar-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cta-card {
+                padding: 30px;
+            }
+            
+            .cta-card h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="index.html" class="logo">HustlersConnect</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">Services</a>
+            <a href="Testimonial.html">Testimonial</a>
+            <a href="about.html">About</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <a class="btn btn-blue" href="contact.html">Get Started</a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="service-hero">
+        <div class="container">
+            <h1 class="fade-in-up">Social Media Management That Drives Results</h1>
+            <p class="fade-in-up delay-1">We help businesses grow their online presence with strategic content, data-driven insights, and authentic engagement across all major platforms.</p>
+            <a class="btn btn-blue fade-in-up delay-2" href="#contact">Elevate Your Social Media</a>
+            
+            <div class="hero-stats fade-in-up delay-3">
+                <div class="stat-item">
+                    <span class="stat-number">300%</span>
+                    <span class="stat-label">Average Growth</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Monitoring</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Engagement Rate</span>
+                </div>
+            </div>
+            
+            <div class="social-icons-hero fade-in-up delay-3">
+                <div class="social-icon-hero instagram" style="animation-delay: 0s;">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="social-icon-hero facebook" style="animation-delay: 0.2s;">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-icon-hero twitter" style="animation-delay: 0.4s;">
+                    <i class="fab fa-twitter"></i>
+                </div>
+                <div class="social-icon-hero linkedin" style="animation-delay: 0.6s;">
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+                <div class="social-icon-hero youtube" style="animation-delay: 0.8s;">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="social-icon-hero tiktok" style="animation-delay: 1s;">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLATFORMS SECTION -->
+    <section class="platforms-section">
+        <div class="container">
+            <h2 class="section-title">Platforms We Master</h2>
+            <p class="section-subtitle">We create platform-specific strategies that maximize your reach and engagement</p>
+            
+            <div class="platforms-grid">
+                <!-- Instagram -->
+                <div class="platform-card slide-in-left">
+                    <div class="platform-icon" style="background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C, #FD1D1D);">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Instagram</h3>
+                    <p>Visual storytelling, Reels strategy, and community building to make your brand shine.</p>
+                    <span class="stat-number" style="font-size: 20px; color: var(--accent-blue);">+2.3M</span>
+                    <span class="stat-label">Followers Managed</span>
+                </div>
+                
+                <!-- LinkedIn -->
+                <div class="platform-card fade-in-up delay-1">
+                    <div class="platform-icon" style="background: #0077B5;">
+                        <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <p>Professional branding, lead generation, and B2B networking that drives business growth.</p>
+                    <span class="stat-number" style="font-size: 20px; color: var(--accent-blue);">+500K</span>
+                    <span class="stat-label">Connections</span>
+                </div>
+                
+                <!-- Facebook -->
+                <div class="platform-card slide-in-right">
+                    <div class="platform-icon" style="background: #1877F2;">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h3>Facebook</h3>
+                    <p>Community management, targeted advertising, and brand awareness campaigns.</p>
+                    <span class="stat-number" style="font-size: 20px; color: var(--accent-blue);">+3.5M</span>
+                    <span class="stat-label">Page Likes</span>
+                </div>
+                
+                <!-- Twitter -->
+                <div class="platform-card slide-in-left delay-1">
+                    <div class="platform-icon" style="background: #1DA1F2;">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3>Twitter/X</h3>
+                    <p>Real-time engagement, trend participation, and brand voice development.</p>
+                    <span class="stat-number" style="font-size: 20px; color: var(--accent-blue);">+1.2M</span>
+                    <span class="stat-label">Followers</span>
+                </div>
+                
+                <!-- TikTok -->
+                <div class="platform-card fade-in-up delay-2">
+                    <div class="platform-icon" style="background: #000000;">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h3>TikTok</h3>
+                    <p>Viral content creation, trend adaptation, and Gen-Z audience engagement.</p>
+                    <span class="stat-number" style="font-size: 20px; color: var(--accent-blue);">+4.8M</span>
+                    <span class="stat-label">Views</span>
+                </div>
+                
+                <!-- YouTube -->
+                <div class="platform-card slide-in-right delay-1">
+                    <div class="platform-icon" style="background: #FF0000;">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>YouTube</h3>
+                    <p>Video content strategy, channel growth, and subscriber engagement optimization.</p>
+                    <span class="stat-number" style="font-size: 20px; color: var(--accent-blue);">+2.1M</span>
+                    <span class="stat-label">Subscribers</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD SECTION -->
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="dashboard-container fade-in-up">
+                <div class="dashboard-header">
+                    <h2 style="color: var(--primary-dark);">Real-Time Performance Dashboard</h2>
+                    <p style="color: var(--text-muted);">Track your social media growth with our comprehensive analytics</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="metric-card slide-in-left">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="metric-content">
+                                <h4>Total Followers</h4>
+                                <p>Across all platforms</p>
+                            </div>
+                        </div>
+                        <div class="metric-value">124,857</div>
+                        <div class="metric-trend">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+12.5% this month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card slide-in-right">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="metric-content">
+                                <h4>Engagement Rate</h4>
+                                <p>Average across platforms</p>
+                            </div>
+                        </div>
+                        <div class="metric-value">8.7%</div>
+                        <div class="metric-trend">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+2.3% this month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card slide-in-left delay-1">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="metric-content">
+                                <h4>Content Reach</h4>
+                                <p>Monthly unique viewers</p>
+                            </div>
+                        </div>
+                        <div class="metric-value">2.4M</div>
+                        <div class="metric-trend">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+45% this month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card slide-in-right delay-1">
+                        <div class="metric-header">
+                            <div class="metric-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="metric-content">
+                                <h4>Conversions</h4>
+                                <p>From social media</p>
+                            </div>
+                        </div>
+                        <div class="metric-value">3,248</div>
+                        <div class="metric-trend">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+28% this month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Comprehensive Social Media Services</h2>
+            <p class="section-subtitle">Choose from our specialized service packages or customize your own</p>
+            
+            <div class="services-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="content">Content Strategy</button>
+                    <button class="tab-btn" data-tab="management">Community Management</button>
+                    <button class="tab-btn" data-tab="advertising">Paid Advertising</button>
+                    <button class="tab-btn" data-tab="analytics">Analytics & Reporting</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div class="tab-pane active" id="content">
+                        <h3>Strategic Content Creation</h3>
+                        <p>We develop platform-specific content calendars that tell your brand story, engage your audience, and drive conversions.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Monthly content calendar planning</li>
+                            <li><i class="fas fa-check-circle"></i> High-quality graphics & video production</li>
+                            <li><i class="fas fa-check-circle"></i> Copywriting & caption optimization</li>
+                            <li><i class="fas fa-check-circle"></i> Hashtag strategy & research</li>
+                            <li><i class="fas fa-check-circle"></i> Reels/TikTok video creation</li>
+                            <li><i class="fas fa-check-circle"></i> User-generated content curation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tab-pane" id="management">
+                        <h3>24/7 Community Management</h3>
+                        <p>We monitor, engage, and grow your community across all social platforms to build authentic relationships.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Daily monitoring & engagement</li>
+                            <li><i class="fas fa-check-circle"></i> Comment & DM response management</li>
+                            <li><i class="fas fa-check-circle"></i> Brand reputation monitoring</li>
+                            <li><i class="fas fa-check-circle"></i> Crisis management & escalation</li>
+                            <li><i class="fas fa-check-circle"></i> Influencer relationship building</li>
+                            <li><i class="fas fa-check-circle"></i> Community growth initiatives</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tab-pane" id="advertising">
+                        <h3>Data-Driven Advertising</h3>
+                        <p>We create and optimize paid campaigns that deliver maximum ROI across all social platforms.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Campaign strategy & planning</li>
+                            <li><i class="fas fa-check-circle"></i> Ad creative development</li>
+                            <li><i class="fas fa-check-circle"></i> A/B testing & optimization</li>
+                            <li><i class="fas fa-check-circle"></i> Audience targeting & segmentation</li>
+                            <li><i class="fas fa-check-circle"></i> Retargeting & remarketing campaigns</li>
+                            <li><i class="fas fa-check-circle"></i> Conversion tracking & optimization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tab-pane" id="analytics">
+                        <h3>Advanced Analytics & Insights</h3>
+                        <p>We provide detailed reports and actionable insights to continuously improve your social media performance.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check-circle"></i> Weekly performance reports</li>
+                            <li><i class="fas fa-check-circle"></i> Competitor analysis</li>
+                            <li><i class="fas fa-check-circle"></i> Audience insights & demographics</li>
+                            <li><i class="fas fa-check-circle"></i> ROI tracking & attribution</li>
+                            <li><i class="fas fa-check-circle"></i> Trend analysis & recommendations</li>
+                            <li><i class="fas fa-check-circle"></i> Custom dashboard access</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Social Media Packages</h2>
+            <p class="section-subtitle">Choose the plan that fits your business needs</p>
+            
+            <div class="pricing-cards">
+                <!-- Starter Plan -->
+                <div class="pricing-card slide-in-left">
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <div class="price">$499<span>/month</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>2 Social Platforms</li>
+                        <li>12 Posts per Month</li>
+                        <li>Basic Content Creation</li>
+                        <li>Weekly Engagement</li>
+                        <li>Monthly Analytics Report</li>
+                        <li>Email Support</li>
+                    </ul>
+                    <a href="#contact" class="btn">Get Started</a>
+                </div>
+                
+                <!-- Professional Plan -->
+                <div class="pricing-card featured fade-in-up">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Professional</h3>
+                        <div class="price">$1,299<span>/month</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>4 Social Platforms</li>
+                        <li>24 Posts per Month</li>
+                        <li>Premium Content Creation</li>
+                        <li>Daily Engagement</li>
+                        <li>Weekly Analytics Reports</li>
+                        <li>Paid Ad Management</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-blue">Get Started</a>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="pricing-card slide-in-right">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="price">$2,999<span>/month</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>All Social Platforms</li>
+                        <li>Unlimited Posts</li>
+                        <li>Full Content Strategy</li>
+                        <li>24/7 Monitoring</li>
+                        <li>Advanced Analytics Dashboard</li>
+                        <li>Custom Ad Campaigns</li>
+                        <li>Dedicated Account Manager</li>
+                    </ul>
+                    <a href="#contact" class="btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Grow Your Social Media</h2>
+            <div class="contact-container">
+                <div class="contact-info fade-in-up">
+                    <h2>Ready to dominate social media?</h2>
+                    <p>Whether you need a complete social media overhaul or just want to boost your current efforts, we're here to help.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>roshanyadavco@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>8461949590</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp Chat</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-instagram"></i>
+                            <span>@roshan1yadav.co</span>
+                        </div>
+                    </div>
+                    
+                    <a class="btn btn-blue" href="mailto:parallax.studio.co@gmail.com">Email Us</a>
+                </div>
+                
+                <div class="contact-form fade-in-up delay-1">
+                    <h3>Schedule a social media audit</h3>
+                    <form id="socialMediaForm">
+                        <div class="form-group">
+                            <label for="businessName">BUSINESS NAME</label>
+                            <input type="text" id="businessName" name="businessName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="socialPlatforms">SOCIAL MEDIA PLATFORMS</label>
+                            <select id="socialPlatforms" name="socialPlatforms" class="form-group select" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 10px;">
+                                <option value="">Select Platforms</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="facebook">Facebook</option>
+                                <option value="linkedin">LinkedIn</option>
+                                <option value="twitter">Twitter/X</option>
+                                <option value="tiktok">TikTok</option>
+                                <option value="youtube">YouTube</option>
+                                <option value="all">All Platforms</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">EMAIL ADDRESS</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="goals">SOCIAL MEDIA GOALS</label>
+                            <textarea id="goals" name="goals" placeholder="What do you want to achieve with your social media?" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-blue" style="width: 100%;">Request Free Audit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright">
+                    &copy; 2023 HustlersConnect. All rights reserved.
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and panes
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabPanes.forEach(pane => pane.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding pane
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Floating social icons animation
+        const socialIcons = document.querySelectorAll('.social-icon-hero');
+        socialIcons.forEach((icon, index) => {
+            icon.style.animationDelay = `${index * 0.2}s`;
+            
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.2)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Animation on scroll
+        function checkScroll() {
+            const elements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translate(0, 0)';
+                }
+            });
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial animation states
+            const animatedElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right');
+            animatedElements.forEach(el => {
+                if (el.classList.contains('fade-in-up')) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                }
+                if (el.classList.contains('slide-in-left')) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateX(-50px)';
+                }
+                if (el.classList.contains('slide-in-right')) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateX(50px)';
+                }
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+
+            // Check scroll on load
+            checkScroll();
+
+            // Navbar background on scroll
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    nav.style.backgroundColor = 'rgba(243, 237, 228, 0.95)';
+                    nav.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    nav.style.backgroundColor = 'rgba(243, 237, 228, 0.9)';
+                    nav.style.boxShadow = 'none';
+                }
+                
+                // Check for scroll animations
+                checkScroll();
+            });
+
+            // Form submission
+            document.getElementById('socialMediaForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const businessName = document.getElementById('businessName').value;
+                const email = document.getElementById('email').value;
+                
+                // In a real application, you would send this data to a server
+                alert(`Thank you ${businessName}! We'll contact you at ${email} soon for your free social media audit.`);
+                
+                // Reset form
+                document.getElementById('socialMediaForm').reset();
+            });
+
+            // Calendar date hover effects
+            document.querySelectorAll('.calendar-date').forEach(date => {
+                date.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                date.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Platform card hover effects
+            document.querySelectorAll('.platform-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.platform-icon');
+                    icon.style.transform = 'rotate(360deg) scale(1.1)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.platform-icon');
+                    icon.style.transform = 'rotate(0) scale(1)';
+                });
+            });
+
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Animated metric values
+            function animateMetrics() {
+                const metricValues = document.querySelectorAll('.metric-value');
+                metricValues.forEach(metric => {
+                    const originalText = metric.textContent;
+                    metric.textContent = '0';
+                    
+                    let counter = 0;
+                    const target = parseInt(originalText.replace(/,/g, ''));
+                    const increment = target / 100;
+                    
+                    const updateCounter = () => {
+                        counter += increment;
+                        if (counter < target) {
+                            metric.textContent = Math.floor(counter).toLocaleString();
+                            setTimeout(updateCounter, 20);
+                        } else {
+                            metric.textContent = originalText;
+                        }
+                    };
+                    
+                    setTimeout(updateCounter, 500);
+                });
+            }
+            
+            // Start metric animation when dashboard comes into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateMetrics();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            const dashboardSection = document.querySelector('.dashboard-section');
+            if (dashboardSection) {
+                observer.observe(dashboardSection);
+            }
+        });
+    </script>
+</body>
+</html>
