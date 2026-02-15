@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HustlersConnect</title>
+    <title>HustlersConnect – From Influencer to Business Owner</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,6 +90,7 @@
             color: var(--accent-teal);
         }
 
+        /* COMMON BUTTON */
         .btn {
             background: var(--primary-brown);
             color: white;
@@ -104,44 +105,91 @@
             cursor: pointer;
             font-family: 'Inter', sans-serif;
         }
-
         .btn:hover {
-            background: var(--primary-dark);
+            background: #25a8aa;
+            color: white;
             transform: translateY(-3px);
-            box-shadow: var(--shadow-medium);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
-        .btn-teal {
-            background: var(--accent-teal);
+        /* TEALS BUTTON */
+        .btn-teals {
+            background: #3E281C;
         }
-
-        .btn-teal:hover {
+        .btn-teals:hover {
             background: #25a8aa;
         }
 
-        /* HERO */
+        /* HERO SECTION - FIXED ALIGNMENT */
         .hero {
             text-align: center;
-            padding: 160px 20px 100px;
+            padding: 120px 20px 100px;
         }
 
         .hero h1 {
-            font-size: 72px;
-            max-width: 900px;
+            font-size: 60px;
+            max-width: 600px;
             margin: 0 auto 30px;
-            line-height: 1.1;
+            line-height: 1.14;
             font-weight: 800;
         }
 
         .hero p {
             font-size: 20px;
             max-width: 700px;
-            margin: 0 auto 50px;
+            margin: 0 auto 40px;
             color: var(--text-muted);
         }
 
-        /* CARD SECTION */
-        .section {
+        /* PERFECT ROW ALIGNMENT - BUTTON AND STATS IN SAME LINE */
+        .hero-main-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px auto 0;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-direction: column;
+            white-space: nowrap;
+        }
+
+        .hero-stat-row {
+            display: flex;
+            gap: 50px;
+        }
+
+        .hero-stat-row span {
+            width: 100px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .hero-stat-row:first-child span {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .hero-stat-row:last-child span {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-transform: capitalize;
+            letter-spacing: 1px;
+        }
+
+       
+
+
+
+        /* PREVIEW CARD SECTION */
+        .preview-section {
             background: var(--bg-soft);
             padding: 80px 20px;
         }
@@ -184,189 +232,170 @@
             text-transform: uppercase;
         }
 
-        /* SOLUTIONS SECTION */
-        .solutions {
+        /* USP SECTION - VERTICAL CARDS SLIDING HORIZONTALLY */
+        .usp-section {
             padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 42px;
-            margin-bottom: 70px;
-            font-weight: 700;
-        }
-
-        .solutions-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .solution-card {
-            background: var(--card-bg);
-            border-radius: 20px;
+            background: var(--bg-main);
             overflow: hidden;
-            width: 350px;
+        }
+
+        .usp-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .usp-subtitle {
+            text-align: center;
+            font-size: 22px;
+            color: var(--primary-dark);
+            margin-bottom: 60px;
+            font-weight: 600;
+        }
+
+        /* Horizontal slider container */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 20px 0 40px;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 30px;
+            width: max-content;
+            animation: conveyorBelt 30s linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes conveyorBelt {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-320px * 4 - 30px * 4)); }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .slider-track {
+                animation: conveyorBelt 15s linear infinite;
+            }
+        }
+
+        .slider-container::before,
+        .slider-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .slider-container::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-main), transparent);
+        }
+
+        .slider-container::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-main), transparent);
+        }
+
+        /* VERTICAL CARD FORMAT */
+        .platform-card {
+            min-width: 320px;
+            width: 320px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px 25px;
             box-shadow: var(--shadow-soft);
             transition: var(--transition);
+            border: 1px solid rgba(91, 58, 41, 0.1);
+            flex-shrink: 0;
             display: flex;
             flex-direction: column;
+            min-height: 200px;
         }
 
-        .solution-card:hover {
+        .platform-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-medium);
         }
 
-        .solution-image-container {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        .platform-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
-        .solution-card:nth-child(2) .solution-image-container {
-            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
-        }
-
-        .solution-card:nth-child(3) .solution-image-container {
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-        }
-
-        .solution-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .solution-card:hover .solution-image {
-            transform: scale(1.05);
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.2);
+        .platform-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 36px;
             color: white;
-            font-weight: 600;
-            font-size: 1.2rem;
         }
 
-        .solution-content {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
+        .platform-icon.instagram { background: linear-gradient(45deg, #f09433, #d62976, #962fbf); }
+        .platform-icon.youtube { background: #FF0000; }
+        .platform-icon.facebook { background: #1877F2; }
+        .platform-icon.linkedin { background: #0077B5; }
 
-        .solution-number {
-            display: inline-block;
-            background: var(--accent-teal);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
+        .platform-header h3 {
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .solution-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
             color: var(--primary-dark);
+            margin-top: 5px;
         }
 
-        .solution-card p {
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 20px;
+        .platform-stats {
+            margin-bottom: 25px;
             flex-grow: 1;
         }
 
-        /* Add this to your existing CSS */
+        .platform-stat {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            font-size: 16px;
+            color: var(--primary-brown);
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(46, 196, 199, 0.2);
+        }
 
-/* Make image container a proper link */
-.solution-image-container {
-    display: block;
-    text-decoration: none;
-    position: relative;
-    cursor: pointer;
-}
+        .platform-stat i {
+            color: var(--accent-teal);
+            width: 24px;
+            font-size: 18px;
+        }
 
-/* Add hover effect for the entire card when image is hovered */
-.solution-card:hover .solution-image-container::after {
-    content: 'Click to Learn More';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-   
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 18px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 20px 20px 0 0;
-}
+        .platform-stat strong {
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
 
-.solution-card:hover .solution-image-container:hover::after {
-    opacity: 1;
-}
-
-/* Add pointer cursor to indicate clickable image */
-.solution-image-container:hover {
-    cursor: pointer;
-}
-
-/* Optional: Add a visual indicator for the link */
-.solution-image-container::before {
-    content: '';
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    width: 40px;
-    height: 40px;
-    background: var(--accent-teal);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    content: '→';
-    font-size: 18px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    z-index: 2;
-}
-
-.solution-card:hover .solution-image-container::before {
-    opacity: 1;
-    transform: translateY(0);
-}
         /* TESTIMONIAL SECTION */
         .testimonial-section {
             padding: 100px 0;
             background: var(--bg-soft);
         }
 
-        .testimonial-section .section-title {
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 30px;
+            font-weight: 700;
             color: var(--primary-dark);
         }
 
@@ -378,13 +407,13 @@
             margin: 0 auto 70px;
         }
 
-        /* Testimonial Spiral Container */
         .spiral-container {
             position: relative;
             width: 100%;
             height: 650px;
             max-width: 1200px;
             margin: 0 auto;
+            overflow: visible;
         }
 
         .spiral-center {
@@ -399,7 +428,6 @@
             z-index: 1;
         }
 
-        /* Testimonial Cards */
         .testimonial-spiral-card {
             position: absolute;
             width: 320px;
@@ -414,6 +442,9 @@
             cursor: pointer;
             z-index: 2;
             border: 1px solid rgba(91, 58, 41, 0.1);
+            left: 0;
+            top: 0;
+            opacity: 1;
         }
 
         .testimonial-spiral-card:hover {
@@ -460,8 +491,6 @@
             line-height: 1.6;
             color: var(--primary-brown);
             flex-grow: 1;
-            display: flex;
-            align-items: center;
             font-style: italic;
             position: relative;
             padding-left: 15px;
@@ -496,12 +525,9 @@
             color: var(--text-muted);
         }
 
-        /* Testimonial Controls */
         .testimonial-controls {
             text-align: center;
             margin-top: 40px;
-            position: relative;
-            z-index: 10;
         }
 
         .control-btn {
@@ -534,205 +560,237 @@
             background: #25a8aa;
         }
 
-        /* HOW WE WORK SECTION */
-.how-we-work {
-    background: var(--bg-main);
-    color: var(--primary-dark);
-    padding: 100px 0;
-}
+        /* WHO WE WORK WITH */
+        .who-we-work {
+            padding: 100px 0;
+            background: var(--bg-soft);
+        }
 
-.how-we-work .section-title {
-    color: var(--primary-dark);
-    margin-bottom: 60px;
-}
+        .section-subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
 
-.how-we-work .section-title span {
-    color: var(--accent-teal);
-}
+        .audience-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
 
-.process-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-    position: relative;
-}
+        .audience-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            box-shadow: var(--shadow-soft);
+        }
 
-.process-step {
-    width: 220px;
-    text-align: center;
-    padding: 40px 25px;
-    background: var(--card-bg);
-    border-radius: 20px;
-    box-shadow: var(--shadow-soft);
-    transition: var(--transition);
-    position: relative;
-    z-index: 1;
-}
+        .audience-card h3 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.process-step:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-medium);
-}
+        .audience-card h3 i {
+            color: var(--accent-teal);
+            font-size: 32px;
+        }
 
-.step-number {
-    font-size: 48px;
-    font-weight: 800;
-    color: var(--accent-teal);
-    margin-bottom: 20px;
-    display: block;
-}
+        .audience-list {
+            list-style: none;
+        }
 
-.process-step h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: var(--primary-dark);
-}
+        .audience-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
 
-.process-step p {
-    color: var(--text-muted);
-    font-size: 15px;
-    line-height: 1.6;
-}
+        .audience-list li i {
+            color: var(--accent-teal);
+            width: 20px;
+        }
 
-/* Add connecting lines for desktop */
-@media (min-width: 768px) {
-    .process-container:before {
-        content: '';
-        position: absolute;
-        top: 40%;
-        left: 220px;
-        right: 220px;
-        height: 2px;
-        background: rgba(46, 196, 199, 0.3);
-        z-index: 0;
-    }
-}
+        .audience-list li.muted {
+            color: var(--text-muted);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
 
+        /* HOW WE WORK */
+        .how-we-work {
+            background: var(--bg-main);
+            color: var(--primary-dark);
+            padding: 100px 0;
+        }
 
+        .process-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
 
+        .process-step {
+            width: 220px;
+            text-align: center;
+            padding: 40px 25px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
 
-/* CONTACT SECTION */
-.contact {
-    padding: 100px 0;
-}
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
 
-.contact-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 60px;
-    justify-content: space-between;
-}
+        .step-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent-teal);
+            margin-bottom: 20px;
+            display: block;
+        }
 
-.contact-info {
-    flex: 1;
-    min-width: 300px;
-}
+        .process-step h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
 
-.contact-info h2 {
-    font-size: 36px;
-    margin-bottom: 30px;
-    color: var(--primary-dark);
-}
+        .process-step p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+        }
 
-.contact-info p {
-    color: var(--text-muted);
-    margin-bottom: 40px;
-    font-size: 18px;
-}
+        @media (min-width: 768px) {
+            .process-container:before {
+                content: '';
+                position: absolute;
+                top: 40%;
+                left: 220px;
+                right: 220px;
+                height: 2px;
+                background: rgba(46, 196, 199, 0.3);
+                z-index: 0;
+            }
+        }
 
-.contact-details {
-    margin-bottom: 40px;
-}
+        /* CONTACT */
+        .contact {
+            padding: 100px 0;
+            background: var(--bg-soft);
+        }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    color: var(--primary-brown);
-}
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            justify-content: space-between;
+        }
 
-.contact-item i {
-    width: 30px;
-    color: var(--accent-teal);
-    font-size: 18px;
-}
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
 
-/* ===== GLASS CONTACT FORM ===== */
-.contact-form {
-    flex: 1;
-    min-width: 300px;
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
 
-    background: rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+        .contact-details {
+            margin-bottom: 40px;
+        }
 
-    padding: 40px;
-    border-radius: 24px;
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--primary-brown);
+        }
 
-    border: 1px solid rgba(255, 255, 255, 0.4);
+        .contact-item i {
+            width: 30px;
+            color: var(--accent-teal);
+            font-size: 18px;
+        }
 
-   
-}
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(18px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
 
-.contact-form h3 {
-    font-size: 24px;
-    margin-bottom: 30px;
-    color: var(--primary-dark);
-}
+        .contact-form h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+        }
 
-/* ===== FORM FIELDS ===== */
-.form-group {
-    margin-bottom: 25px;
-}
+        .form-group {
+            margin-bottom: 25px;
+        }
 
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: rgba(90, 60, 40, 0.7);
-}
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(90, 60, 40, 0.7);
+        }
 
-/* INPUTS & TEXTAREA (GLASS STYLE) */
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 16px;
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #3a2a1f;
+            transition: all 0.3s ease;
+        }
 
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(80, 50, 30, 0.6);
+            background: rgba(255, 255, 255, 0.75);
+            box-shadow: 0 8px 25px rgba(80, 50, 30, 0.15);
+        }
 
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 12px;
-
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    color: #3a2a1f;
-
-    transition: all 0.3s ease;
-}
-
-/* FOCUS EFFECT */
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: rgba(80, 50, 30, 0.6);
-    background: rgba(255, 255, 255, 0.75);
-    box-shadow: 0 8px 25px rgba(80, 50, 30, 0.15);
-}
-
-.form-group textarea {
-    height: 150px;
-    resize: vertical;
-}
-
-
-
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
 
         /* FOOTER */
         footer {
@@ -769,107 +827,34 @@
             color: var(--accent-teal);
         }
 
-        /* RESPONSIVE DESIGN */
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 56px;
-            }
-            
-            .process-container {
-                justify-content: center;
-            }
-            
-            .spiral-container {
-                height: 550px;
-            }
-            
-            .testimonial-spiral-card {
-                width: 280px;
-            }
+            .hero h1 { font-size: 56px; }
+            .hero-main-row { gap: 60px; }
+            .hero-stat-row { gap: 60px; }
         }
 
         @media (max-width: 768px) {
-            nav {
-                padding: 15px 20px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .hero {
-                padding: 140px 20px 60px;
-            }
-            
-            .hero h1 {
-                font-size: 42px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
-            
-            .card {
-                flex-direction: column;
-                text-align: center;
-                padding: 30px;
-            }
-            
-            .section-title {
-                font-size: 36px;
-            }
-            
-            .contact-container {
-                flex-direction: column;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .spiral-container {
-                height: 450px;
-            }
-            
-            .testimonial-spiral-card {
-                width: 250px;
-            }
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .hero { padding: 140px 20px 60px; }
+            .hero h1 { font-size: 42px; }
+            .hero-main-row { flex-direction: column; gap: 30px; }
+            .hero-stat-row { gap: 40px; }
+            .hero-stat-row span { width: 120px; }
+            .hero-stat-row:first-child span { font-size: 28px; }
+            .card { flex-direction: column; text-align: center; padding: 30px; }
         }
 
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .solution-card {
-                width: 100%;
-            }
-            
-            .process-step {
-                width: 100%;
-            }
-            
-            .metric {
-                padding: 30px;
-            }
-            
-            .metric h2 {
-                font-size: 48px;
-            }
-            
-            .spiral-container {
-                height: 400px;
-            }
-            
-            .testimonial-spiral-card {
-                width: 220px;
-                padding: 20px;
-            }
+            .hero h1 { font-size: 32px; }
+            .hero-stat-row { gap: 20px; }
+            .hero-stat-row span { width: 100px; font-size: 16px; }
+            .hero-stat-row:first-child span { font-size: 24px; }
+            .process-step { width: 100%; }
         }
     </style>
 </head>
-
 <body>
     <!-- NAVIGATION -->
     <nav>
@@ -879,24 +864,37 @@
             <a href="service.html">Services</a>
             <a href="testimonial.html">Testimonial</a>
             <a href="about.html">About</a>
-            <a href="faq.html">FAQ</a>
-            <a href="contact.html">Contact</a>
-             <a href="login.html">login</a>
+            <a href="portfolio.html">Portfolio</a>
         </div>
         <a class="btn" href="contact.html">Get Started</a>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION - PERFECT ALIGNMENT -->
     <section class="hero">
         <div class="container">
             <h1>From Influencer to Business Owner</h1>
-            <p>We create clean, professional digital solutions that help your business stand out and connect with your audience effectively.</p>
-            <a class="btn btn-teal" href="service.html">Explore Our Services</a>
+            <p>We are the backend system that transforms high-visibility creators into sustainable businesses. Not reels. Not posts. Infrastructure.</p>
+            
+            <!-- BUTTON AND STATS IN ONE STRAIGHT ROW - PERFECT COLUMNS -->
+            <div class="hero-main-row">
+                <a class="btn btn-teals" href="service.html">Explore Our Services</a>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat-row">
+                        <span>500 Million+</span>
+                        <span>4 Million+</span>
+                    </div>
+                    <div class="hero-stat-row">
+                        <span>Views</span>
+                        <span>Followers</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- PREVIEW CARD SECTION -->
-    <section class="section">
+    <section class="preview-section">
         <div class="container">
             <div class="card">
                 <div>
@@ -915,60 +913,115 @@
         </div>
     </section>
 
-    
-<!-- SOLUTIONS SECTION -->
-<section id="solutions" class="solutions">
-    <div class="container">
-        <h2 class="section-title">Our Services</h2>
-        <div class="solutions-container">
+    <!-- USP SECTION - VERTICAL CARDS SLIDING HORIZONTALLY -->
+    <section class="usp-section">
+        <div class="container">
+            <h2 class="usp-title">Our USP</h2>
+            <p class="usp-subtitle">Generated 500M+ Monthly Views and Managing 4M+ Followers Across Social Media Platforms</p>
+          
+            <div class="slider-container">
+                <div class="slider-track">
+                    <!-- Instagram Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <div class="platform-icon instagram"><i class="fab fa-instagram"></i></div>
+                            <h3>Instagram</h3>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="platform-stat"><i class="fas fa-chart-line"></i><span><strong>500M+</strong> monthly views</span></div>
+                            <div class="platform-stat"><i class="fas fa-users"></i><span><strong>4M+</strong> followers managed</span></div>
+                            <div class="platform-stat"><i class="fas fa-video"></i><span>Viral reels & growth strategies</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- YouTube Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <div class="platform-icon youtube"><i class="fab fa-youtube"></i></div>
+                            <h3>YouTube</h3>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="platform-stat"><i class="fas fa-chart-line"></i><span><strong>500M+</strong> monthly views</span></div>
+                            <div class="platform-stat"><i class="fas fa-users"></i><span><strong>4M+</strong> followers managed</span></div>
+                            <div class="platform-stat"><i class="fas fa-clock"></i><span>Shorts & video content</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Facebook Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <div class="platform-icon facebook"><i class="fab fa-facebook-f"></i></div>
+                            <h3>Facebook</h3>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="platform-stat"><i class="fas fa-chart-line"></i><span><strong>500M+</strong> monthly views</span></div>
+                            <div class="platform-stat"><i class="fas fa-users"></i><span><strong>4M+</strong> followers managed</span></div>
+                            <div class="platform-stat"><i class="fas fa-community"></i><span>Community building</span></div>
+                        </div>
+                    </div>
 
-            <!-- SOLUTION 01 -->
-            <div class="solution-card">
-                <a href="website.html" target="_blank" class="solution-image-container">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="Website Analytics Dashboard" class="solution-image">
-                </a>
-                <div class="solution-content">
-                    <div class="solution-number">01</div>
-                    <h3>Website Design & Development</h3>
-                    <p>Your website is often the first interaction someone has with your business. We design and develop clean, fast, and professional websites that make your brand feel credible, clear, and easy to engage with.</p>
+                    <!-- LinkedIn Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <div class="platform-icon linkedin"><i class="fab fa-linkedin-in"></i></div>
+                            <h3>LinkedIn</h3>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="platform-stat"><i class="fas fa-chart-line"></i><span><strong>500M+</strong> monthly views</span></div>
+                            <div class="platform-stat"><i class="fas fa-users"></i><span><strong>4M+</strong> followers managed</span></div>
+                            <div class="platform-stat"><i class="fas fa-briefcase"></i><span>Professional networking & B2B</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Duplicates for seamless loop -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <div class="platform-icon instagram"><i class="fab fa-instagram"></i></div>
+                            <h3>Instagram</h3>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="platform-stat"><i class="fas fa-chart-line"></i><span><strong>500M+</strong> monthly views</span></div>
+                            <div class="platform-stat"><i class="fas fa-users"></i><span><strong>4M+</strong> followers managed</span></div>
+                            <div class="platform-stat"><i class="fas fa-video"></i><span>Viral reels & growth strategies</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <div class="platform-icon youtube"><i class="fab fa-youtube"></i></div>
+                            <h3>YouTube</h3>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="platform-stat"><i class="fas fa-chart-line"></i><span><strong>500M+</strong> monthly views</span></div>
+                            <div class="platform-stat"><i class="fas fa-users"></i><span><strong>4M+</strong> followers managed</span></div>
+                            <div class="platform-stat"><i class="fas fa-clock"></i><span>Shorts & video content</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <div class="platform-icon facebook"><i class="fab fa-facebook-f"></i></div>
+                            <h3>Facebook</h3>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="platform-stat"><i class="fas fa-chart-line"></i><span><strong>500M+</strong> monthly views</span></div>
+                            <div class="platform-stat"><i class="fas fa-users"></i><span><strong>4M+</strong> followers managed</span></div>
+                            <div class="platform-stat"><i class="fas fa-community"></i><span>Community building</span></div>
+                        </div>
+                    </div>
+
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <div class="platform-icon linkedin"><i class="fab fa-linkedin-in"></i></div>
+                            <h3>LinkedIn</h3>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="platform-stat"><i class="fas fa-chart-line"></i><span><strong>500M+</strong> monthly views</span></div>
+                            <div class="platform-stat"><i class="fas fa-users"></i><span><strong>4M+</strong> followers managed</span></div>
+                            <div class="platform-stat"><i class="fas fa-briefcase"></i><span>Professional networking & B2B</span></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-
-            
-            <!-- SOLUTION 02 -->
-            <div class="solution-card">
-                <a href="social-media.html" target="_blank" class="solution-image-container">
-                    <img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="Social Media Planning" class="solution-image">
-                </a>
-                <div class="solution-content">
-                    <div class="solution-number">02</div>
-                    <h3>Social Media Management</h3>
-                    <p>We help businesses maintain a clean and consistent presence across social media platforms without the stress of daily posting and planning. The goal isn't noise — it's clarity.</p>
-                </div>
-            </div>
-            
-            <!-- SOLUTION 03 -->
-            <div class="solution-card">
-                <a href="video-editing.html" target="_blank" class="solution-image-container">
-                    <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="Video Editing Interface" class="solution-image">
-                </a>
-                <div class="solution-content">
-                    <div class="solution-number">03</div>
-                    <h3>Video Editing & Visual Content</h3>
-                    <p>We edit clean, well-paced videos that feel professional and easy to watch — not over-edited or distracting.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-
             </div>
         </div>
     </section>
@@ -981,7 +1034,7 @@
             
             <div class="spiral-container">
                 <div class="spiral-center"></div>
-                <!-- Testimonial cards will be inserted here by JavaScript -->
+                <!-- Testimonial cards injected by JavaScript -->
             </div>
             
             <div class="testimonial-controls">
@@ -992,38 +1045,65 @@
         </div>
     </section>
 
+    <!-- WHO WE WORK WITH SECTION -->
+    <section class="who-we-work">
+        <div class="container">
+            <h2 class="section-title">Built For Scale, Not Beginners</h2>
+            <p class="section-subtitle">We work exclusively with creators who already have fame, audience trust, and demand. We provide what they lack: business systems.</p>
+            
+            <div class="audience-container">
+                <div class="audience-card">
+                    <h3><i class="fas fa-check-circle"></i> Built For</h3>
+                    <ul class="audience-list">
+                        <li><i class="fas fa-check"></i> Celebrity makeup artists</li>
+                        <li><i class="fas fa-check"></i> High-visibility beauty creators</li>
+                        <li><i class="fas fa-check"></i> Influencers with 300K+ followers</li>
+                        <li><i class="fas fa-check"></i> Creators doing brand collaborations</li>
+                        <li><i class="fas fa-check"></i> Those running masterclasses/workshops</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 30px;"><i class="fas fa-star"></i> They Already Have</h3>
+                    <ul class="audience-list">
+                        <li><i class="fas fa-check"></i> Fame & visibility</li>
+                        <li><i class="fas fa-check"></i> Audience trust</li>
+                        <li><i class="fas fa-check"></i> Demand</li>
+                        <li><i class="fas fa-check"></i> Brand recognition</li>
+                        <li><i class="fas fa-check"></i> Content creation skills</li>
+                    </ul>
+                </div>
+                
+                <div class="audience-card">
+                    <h3><i class="fas fa-times-circle"></i> What They Lack</h3>
+                    <ul class="audience-list">
+                        <li><i class="fas fa-clock"></i> Time for strategy</li>
+                        <li><i class="fas fa-chart-line"></i> Business systems</li>
+                        <li><i class="fas fa-handshake"></i> Negotiation leverage</li>
+                        <li><i class="fas fa-coins"></i> Financial clarity</li>
+                        <li><i class="fas fa-cogs"></i> Operational backend</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 30px;"><i class="fas fa-ban"></i> Not For</h3>
+                    <ul class="audience-list">
+                        <li class="muted"><i class="fas fa-times"></i> Beginners under 50K followers</li>
+                        <li class="muted"><i class="fas fa-times"></i> Exposure-seekers</li>
+                        <li class="muted"><i class="fas fa-times"></i> Cheap reel-only clients</li>
+                        <li class="muted"><i class="fas fa-times"></i> Micromanagers</li>
+                        <li class="muted"><i class="fas fa-times"></i> Anyone who doesn't respect premium positioning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- HOW WE WORK SECTION -->
     <section id="process" class="how-we-work">
         <div class="container">
             <h2 class="section-title">How We Work</h2>
             <div class="process-container">
-                <!-- STEP 01 -->
-                <div class="process-step">
-                    <div class="step-number">01</div>
-                    <h3>Understand</h3>
-                    <p>We deep dive into your business goals.</p>
-                </div>
-                
-                <!-- STEP 02 -->
-                <div class="process-step">
-                    <div class="step-number">02</div>
-                    <h3>Build</h3>
-                    <p>Our team crafts your custom solution.</p>
-                </div>
-                
-                <!-- STEP 03 -->
-                <div class="process-step">
-                    <div class="step-number">03</div>
-                    <h3>Review</h3>
-                    <p>Collaborative feedback and refinements.</p>
-                </div>
-                
-                <!-- STEP 04 -->
-                <div class="process-step">
-                    <div class="step-number">04</div>
-                    <h3>Launch</h3>
-                    <p>Your project goes live to the world.</p>
-                </div>
+                <div class="process-step"><div class="step-number">01</div><h3>Understand</h3><p>We deep dive into your business goals and current challenges.</p></div>
+                <div class="process-step"><div class="step-number">02</div><h3>Build</h3><p>Our team crafts your custom business infrastructure.</p></div>
+                <div class="process-step"><div class="step-number">03</div><h3>Review</h3><p>Collaborative feedback and refinements to ensure alignment.</p></div>
+                <div class="process-step"><div class="step-number">04</div><h3>Launch</h3><p>Your sustainable business systems go live.</p></div>
             </div>
         </div>
     </section>
@@ -1037,51 +1117,23 @@
                     <p>Whether you need a full rebrand or a simple automation, a short conversation is often the best place to start.</p>
                     
                     <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>roshan123@gmail.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>7461949590</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>WhatsApp Chat</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-instagram"></i>
-                            <span>@roshanhustler</span>
-                        </div>
+                        <div class="contact-item"><i class="fas fa-envelope"></i><span>roshan123@gmail.com</span></div>
+                        <div class="contact-item"><i class="fas fa-phone"></i><span>7461949590</span></div>
+                        <div class="contact-item"><i class="fab fa-whatsapp"></i><span>WhatsApp Chat</span></div>
+                        <div class="contact-item"><i class="fab fa-instagram"></i><span>@roshanhustler</span></div>
                     </div>
                     
-                    <a class="btn" href="roshan123@gmail.com">Email Us</a>
+                    <a class="btn" href="mailto:roshan123@gmail.com">Email Us</a>
                 </div>
                 
                 <div class="contact-form">
                     <h3>Send us a message</h3>
                     <form id="messageForm">
-                        <div class="form-group">
-                            <label for="firstName">FIRST NAME</label>
-                            <input type="text" id="firstName" name="firstName" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="lastName">LAST NAME</label>
-                            <input type="text" id="lastName" name="lastName" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">EMAIL ADDRESS</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">HOW CAN WE HELP?</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-teal" style="width: 100%;">Send Message</button>
+                        <div class="form-group"><label for="firstName">FIRST NAME</label><input type="text" id="firstName" name="firstName" required></div>
+                        <div class="form-group"><label for="lastName">LAST NAME</label><input type="text" id="lastName" name="lastName" required></div>
+                        <div class="form-group"><label for="email">EMAIL ADDRESS</label><input type="email" id="email" name="email" required></div>
+                        <div class="form-group"><label for="message">HOW CAN WE HELP?</label><textarea id="message" name="message" required></textarea></div>
+                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -1092,9 +1144,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="copyright">
-                    &copy; 2026 hustlersconnect All rights reserved.
-                </div>
+                <div class="copyright">&copy; 2026 HustlersConnect. All rights reserved.</div>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -1106,254 +1156,123 @@
     </footer>
 
     <script>
-        // Testimonial data matching your theme
-        const testimonials = [
-            {
-                name: "Alex Morgan",
-                position: "CEO, TechVision Inc.",
-                quote: "HustlersConnect transformed our online presence. Their attention to detail and creative approach resulted in a 40% increase in user engagement.",
-                date: "March 15, 2024",
-                avatar: "https://i.pravatar.cc/150?img=1",
-                rating: 5
-            },
-            {
-                name: "Samantha Lee",
-                position: "Marketing Director, Bloom & Co.",
-                quote: "The team's ability to blend aesthetics with functionality is exceptional. Our conversion rates improved by 65% after the redesign.",
-                date: "February 28, 2024",
-                avatar: "https://i.pravatar.cc/150?img=5",
-                rating: 4.5
-            },
-            {
-                name: "Marcus Chen",
-                position: "Founder, UrbanApparel",
-                quote: "Working with HustlersConnect was a game-changer. They understood our vision and delivered beyond expectations. Highly recommended!",
-                date: "January 10, 2024",
-                avatar: "https://i.pravatar.cc/150?img=8",
-                rating: 5
-            },
-            {
-                name: "Jessica Rivera",
-                position: "Product Manager, NexGen Solutions",
-                quote: "Their implementation is smooth and performant. It added a premium feel to our platform without compromising load times.",
-                date: "December 5, 2023",
-                avatar: "https://i.pravatar.cc/150?img=11",
-                rating: 5
-            },
-            {
-                name: "David Kim",
-                position: "Creative Director, Visionary Media",
-                quote: "The collaborative process was seamless. HustlersConnect took our complex requirements and turned them into an elegant solution.",
-                date: "November 18, 2023",
-                avatar: "https://i.pravatar.cc/150?img=14",
-                rating: 4.5
-            },
-            {
-                name: "Olivia Parker",
-                position: "CEO, Artisan Coffee Co.",
-                quote: "From concept to launch, the team was professional and innovative. Our e-commerce site now reflects our brand perfectly.",
-                date: "October 30, 2023",
-                avatar: "https://i.pravatar.cc/150?img=19",
-                rating: 5
-            }
-        ];
-        
-        // Spiral animation variables
-        let angle = 0;
-        let animationId = null;
-        let isAnimating = true;
-        const container = document.querySelector('.spiral-container');
-        
-        // Create testimonial cards for spiral
-        function createSpiralCards() {
-            testimonials.forEach((testimonial, index) => {
-                const card = document.createElement('div');
-                card.className = 'testimonial-spiral-card';
-                card.dataset.index = index;
-                
-                // Create stars HTML
-                let starsHTML = '';
-                const fullStars = Math.floor(testimonial.rating);
-                const hasHalfStar = testimonial.rating % 1 !== 0;
-                
-                for (let i = 0; i < fullStars; i++) {
-                    starsHTML += '<i class="fas fa-star"></i>';
-                }
-                
-                if (hasHalfStar) {
-                    starsHTML += '<i class="fas fa-star-half-alt"></i>';
-                }
-                
-                // Fill remaining stars
-                const remainingStars = 5 - Math.ceil(testimonial.rating);
-                for (let i = 0; i < remainingStars; i++) {
-                    starsHTML += '<i class="far fa-star"></i>';
-                }
-                
-                card.innerHTML = `
-                    <div class="testimonial-content">
-                        <div class="testimonial-header">
-                            <img src="${testimonial.avatar}" alt="${testimonial.name}" class="testimonial-avatar">
-                            <div class="testimonial-info">
-                                <h4>${testimonial.name}</h4>
-                                <p>${testimonial.position}</p>
+        (function() {
+            // TESTIMONIAL SPIRAL
+            const testimonials = [
+                { name: "Alex Morgan", position: "CEO, TechVision Inc.", quote: "HustlersConnect transformed our online presence. Their attention to detail and creative approach resulted in a 40% increase in user engagement.", date: "March 15, 2024", avatar: "https://i.pravatar.cc/150?img=1", rating: 5 },
+                { name: "Samantha Lee", position: "Marketing Director, Bloom & Co.", quote: "The team's ability to blend aesthetics with functionality is exceptional. Our conversion rates improved by 65% after the redesign.", date: "February 28, 2024", avatar: "https://i.pravatar.cc/150?img=5", rating: 4.5 },
+                { name: "Marcus Chen", position: "Founder, UrbanApparel", quote: "Working with HustlersConnect was a game-changer. They understood our vision and delivered beyond expectations. Highly recommended!", date: "January 10, 2024", avatar: "https://i.pravatar.cc/150?img=8", rating: 5 },
+                { name: "Jessica Rivera", position: "Product Manager, NexGen Solutions", quote: "Their implementation is smooth and performant. It added a premium feel to our platform without compromising load times.", date: "December 5, 2023", avatar: "https://i.pravatar.cc/150?img=11", rating: 5 },
+                { name: "David Kim", position: "Creative Director, Visionary Media", quote: "The collaborative process was seamless. HustlersConnect took our complex requirements and turned them into an elegant solution.", date: "November 18, 2023", avatar: "https://i.pravatar.cc/150?img=14", rating: 4.5 },
+                { name: "Olivia Parker", position: "CEO, Artisan Coffee Co.", quote: "From concept to launch, the team was professional and innovative. Our e-commerce site now reflects our brand perfectly.", date: "October 30, 2023", avatar: "https://i.pravatar.cc/150?img=19", rating: 5 }
+            ];
+
+            const container = document.querySelector('.spiral-container');
+            if (container) {
+                testimonials.forEach((t, idx) => {
+                    const card = document.createElement('div');
+                    card.className = 'testimonial-spiral-card';
+                    card.dataset.index = idx;
+
+                    let stars = '';
+                    const full = Math.floor(t.rating);
+                    const half = t.rating % 1 !== 0;
+                    for (let i=0; i<full; i++) stars += '<i class="fas fa-star"></i>';
+                    if (half) stars += '<i class="fas fa-star-half-alt"></i>';
+                    for (let i=0; i<5-Math.ceil(t.rating); i++) stars += '<i class="far fa-star"></i>';
+
+                    card.innerHTML = `
+                        <div class="testimonial-content">
+                            <div class="testimonial-header">
+                                <img src="${t.avatar}" alt="${t.name}" class="testimonial-avatar">
+                                <div class="testimonial-info">
+                                    <h4>${t.name}</h4>
+                                    <p>${t.position}</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-quote">${t.quote}</div>
+                            <div class="testimonial-footer">
+                                <div class="testimonial-rating">${stars}</div>
+                                <div class="testimonial-date">${t.date}</div>
                             </div>
                         </div>
-                        <div class="testimonial-quote">
-                            ${testimonial.quote}
-                        </div>
-                        <div class="testimonial-footer">
-                            <div class="testimonial-rating">
-                                ${starsHTML}
-                            </div>
-                            <div class="testimonial-date">${testimonial.date}</div>
-                        </div>
-                    </div>
-                `;
-                
-                container.appendChild(card);
-            });
-        }
-        
-        // Animate cards in spiral pattern
-        function animateSpiral() {
-            if (!isAnimating) return;
-            
-            const cards = document.querySelectorAll('.testimonial-spiral-card');
-            const containerRect = container.getBoundingClientRect();
-            const centerX = containerRect.width / 2;
-            const centerY = containerRect.height / 2;
-            
-            cards.forEach((card, index) => {
-                // Each card has different radius and speed
-                const radius = 80 + index * 35;
-                const theta = angle + index * 0.3;
-                const x = Math.cos(theta) * radius + centerX - 160; // Half of card width
-                const y = Math.sin(theta) * radius + centerY - 110; // Half of card height
-                
-                // Use CSS transform for smooth movement
-                card.style.transform = `translate(${x}px, ${y}px)`;
-                
-                // Add subtle rotation based on position
-                const rotation = theta * 5;
-                card.style.transform += ` rotate(${rotation}deg)`;
-            });
-            
-            // Increment angle for continuous spiral motion
-            angle += 0.01;
-            
-            // Continue animation
-            animationId = requestAnimationFrame(animateSpiral);
-        }
-        
-        // Toggle animation
-        function toggleAnimation() {
-            isAnimating = !isAnimating;
-            const toggleBtn = document.getElementById('toggleTestimonialAnimation');
-            
-            if (isAnimating) {
-                toggleBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Animation';
-                toggleBtn.classList.add('teal');
-                animateSpiral();
-            } else {
-                toggleBtn.innerHTML = '<i class="fas fa-play"></i> Resume Animation';
-                toggleBtn.classList.remove('teal');
-            }
-        }
-        
-        // Initialize testimonial section
-        function initTestimonials() {
-            createSpiralCards();
-            animateSpiral();
-            
-            // Add event listener for toggle button
-            document.getElementById('toggleTestimonialAnimation').addEventListener('click', toggleAnimation);
-            
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                // Restart animation on resize
-                if (animationId) {
-                    cancelAnimationFrame(animationId);
+                    `;
+                    container.appendChild(card);
+                });
+
+                const cards = document.querySelectorAll('.testimonial-spiral-card');
+                cards.forEach(c => c.style.opacity = '1');
+
+                let angle = 0;
+                let animationId = null;
+                let isAnimating = true;
+
+                function updateSpiral() {
+                    const rect = container.getBoundingClientRect();
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    cards.forEach((card, i) => {
+                        const radius = 100 + i * 35;
+                        const theta = angle + i * 0.45;
+                        const x = Math.cos(theta) * radius + centerX - card.offsetWidth/2;
+                        const y = Math.sin(theta) * radius + centerY - card.offsetHeight/2;
+                        card.style.transform = `translate(${x}px, ${y}px) rotate(${theta*3}deg)`;
+                    });
+                    angle += 0.008;
+                    if (isAnimating) animationId = requestAnimationFrame(updateSpiral);
                 }
-                if (isAnimating) {
-                    animateSpiral();
-                }
-            });
-            
-            // Add fade-in animation to cards on page load
-            const cards = document.querySelectorAll('.testimonial-spiral-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'scale(0.8)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                    card.style.opacity = '1';
-                }, 300 + (index * 100));
-            });
-        }
-        
-        // Original form submission handling
-        document.getElementById('messageForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const firstName = document.getElementById('firstName').value;
-            const email = document.getElementById('email').value;
-            
-            // In a real application, you would send this data to a server
-            // For this demo, we'll just show an alert
-            alert(`Thank you ${firstName}! Your message has been sent. We'll contact you at ${email} soon.`);
-            
-            // Reset form
-            document.getElementById('messageForm').reset();
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
+
+                setTimeout(() => { if (isAnimating) updateSpiral(); }, 100);
+
+                const toggleBtn = document.getElementById('toggleTestimonialAnimation');
+                if (toggleBtn) {
+                    toggleBtn.addEventListener('click', function() {
+                        isAnimating = !isAnimating;
+                        if (isAnimating) {
+                            this.innerHTML = '<i class="fas fa-pause"></i> Pause Animation';
+                            this.classList.add('teal');
+                            updateSpiral();
+                        } else {
+                            this.innerHTML = '<i class="fas fa-play"></i> Resume Animation';
+                            this.classList.remove('teal');
+                            if (animationId) cancelAnimationFrame(animationId);
+                        }
                     });
                 }
-            });
-        });
-        
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.backgroundColor = 'rgba(243, 237, 228, 0.95)';
-                nav.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                nav.style.backgroundColor = 'rgba(243, 237, 228, 0.9)';
-                nav.style.boxShadow = 'none';
             }
-        });
-        
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            initTestimonials();
-            
-            // Add hover effect pause on testimonial cards
-            document.querySelectorAll('.testimonial-spiral-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transition = 'all 0.3s ease';
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transition = 'all 0.4s ease';
+
+            // SMOOTH SCROLL
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+                    }
                 });
             });
-        });
+
+            // NAVBAR SCROLL
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    nav.style.backgroundColor = 'rgba(243, 237, 228, 0.95)';
+                    nav.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    nav.style.backgroundColor = 'rgba(243, 237, 228, 0.9)';
+                    nav.style.boxShadow = 'none';
+                }
+            });
+
+            // CONTACT FORM HANDLER
+            document.getElementById('messageForm')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+            });
+        })();
     </script>
 </body>
 </html>
